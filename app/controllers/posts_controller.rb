@@ -10,14 +10,14 @@ class PostsController < ApplicationController
   end
 
   def new 
-
+    @post = Post.new 
   end
 
   def create
     @post = Post.new(params[:post])
 
     if @post.save
-      redirect_to posts_url(current_user)
+      redirect_to user_posts current_user
     else
       redirect_to :root
     end
