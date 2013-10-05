@@ -1,1 +1,1 @@
-attributes :created_time,:descriptor,:message
+attributes :created_at,:message,:tags

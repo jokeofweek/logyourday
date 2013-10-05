@@ -2,7 +2,7 @@ class PostsController < ApplicationController
  # before_filter :authorize
 
   def index
-    @posts = current_user.posts.limit(25)
+    @posts = current_user.posts.page(params[:page].to_i,params[:limit].to_i)
   end
 
   def show 
