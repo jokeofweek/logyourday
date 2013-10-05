@@ -1,22 +1,12 @@
-<!doctype html>
-<html lang="en" ng-app>
-    <head>
-        <meta charset="utf8">
-        <title>A Test Angular App</title>
-        <link rel="stylesheet" href="/assets/angular.css"/>
-        <script src="/assets/angular/angular.js"></script>
-        <script src="/assets/angular/controllers/controllers.js"></script>
-      </head>
-    <body ng-controller="PostListCtrl">
-        <div ng-repeat="post in posts">
-            <h1>{{post.id}}</h1>
-            <p ng-bind-html-unsafe="{{post.text}}"></p>
-            <ul style="display:none">
-                <li ng-repeat="tag in post.tags">
-                  {{tag}}
-                </li>
-              </ul>
-          </div>
-        <a href="#" ng-click="nextPage()">More...</a>
-      </body>
-  </html>
+<body ng-controller="PostListCtrl">
+    <div ng-repeat="post in posts">
+        <h1>{{post.id}}</h1>
+        <p ng-bind-html-unsafe="{{post.text}}"></p>
+        <ul style="display:none">
+          <li ng-repeat="tag in post.tags">
+            {{tag}}
+          </li>
+        </ul>
+     </div>
+   <a href="#" ng-click="nextPage()">More...</a>
+ </body>
