@@ -1,4 +1,10 @@
 class SessionsController < ApplicationController
+  def new
+    if logged_in?
+      redirect_to :root
+    end
+  end
+
   def create
     unless logged_in?
       @user = User.find_or_create_by_auth(auth_hash)
