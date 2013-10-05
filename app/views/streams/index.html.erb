@@ -1,7 +1,16 @@
-<body ng-controller="PostListCtrl">
+<body>
+  <form>
+    <label for="post_message">Today I:</label>
+      <input name="post_message" type="text" />
+  </form>
+
+
+  </form>
+  <div ng-controller="PostListCtrl">
+    <h1>Recent Posts</h1>
     <div ng-repeat="post in posts">
-        <h1>{{post.id}}</h1>
-        <p ng-bind-html-unsafe="{{post.text}}"></p>
+        <h2>{{post.id}}</h2>
+        <p ng-bind-html="{{post.text}}"></p>
         <ul style="display:none">
           <li ng-repeat="tag in post.tags">
             {{tag}}
