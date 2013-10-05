@@ -23,7 +23,9 @@ var generatePost = function() {
 
 };
 
-var PostListCtrl = ['$scope', '$http', function($scope, $http) {
+var module = angular.module('lyd');
+
+module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
 
   $http.get('/users/d9922e8a646863d7c6000000/posts.json').success(function(data) {
     $scope.posts = data.posts;
@@ -43,7 +45,7 @@ var PostListCtrl = ['$scope', '$http', function($scope, $http) {
 	$scope.nextPage = function() {
 		$scope.posts.push(generatePost());
 	};
-}];
+}]);
 
 /*
 var CategoryListCtrl = ['$scope', '$http', function($scope, $http) {
