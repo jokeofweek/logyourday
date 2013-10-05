@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
   def authorize
     if not logged_in?
-      redirect_to "/login"
+      redirect_to "/login.html"
     end
   end
 end
