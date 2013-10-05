@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :authorize
+ # before_filter :authorize
 
   def index
     @posts = current_user.posts.limit(25)
