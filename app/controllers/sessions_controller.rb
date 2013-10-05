@@ -14,6 +14,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    @user = nil
+    session[:current_user_id] = nil
+    redirect_to "/login"
   end
   private
     def auth_hash
