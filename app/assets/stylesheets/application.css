@@ -10,4 +10,14 @@
  *
  *= require_self
  *= require_tree .
+ *= require bootstrap
+ *= require font-awesome
+ *= require social-buttons-3
  */
+
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+}
