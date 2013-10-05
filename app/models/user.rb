@@ -6,6 +6,8 @@ class User
   field :secret
   field :expired_at
   field :identifier
+  has_many :posts
+
   def self.find_or_create_by_auth(auth_hash)
     @user = User.where(identifier: auth_hash["uid"], provider: auth_hash["provider"]).first
 
