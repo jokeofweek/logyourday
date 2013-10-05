@@ -1,11 +1,7 @@
 class Post
   include Mongoid::Document
   include Mongoid::Timestamps
-  belongs_to :user do
-     def page(page=0,limit=25)
-    skip(page*limit).limit(limit)
-  end 
-  end
+  belongs_to :user
 
   field :message
   field :tags, type: Array
