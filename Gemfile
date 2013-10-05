@@ -26,7 +26,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'haml'
-
+gem 'rabl'
+gem 'oj'
 gem 'mongoid',github: 'mongoid/mongoid'
 gem 'bson_ext'
 
