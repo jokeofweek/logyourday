@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  def new
+  end
+
   def create
     unless logged_in?
       @user = User.find_or_create_by_auth(auth_hash)

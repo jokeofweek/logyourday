@@ -2,7 +2,7 @@ Logyourday::Application.routes.draw do
 
   get "streams/index"
   get '/auth/:provider/callback', to: 'sessions#create'
-  get '/login', to: 'login#index'
+  get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
   root to: "streams#index"
   resources :users do
