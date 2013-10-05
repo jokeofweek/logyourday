@@ -1,2 +1,22 @@
-<h1>Streams#index</h1>
-<p>Find me in app/views/streams/index.html.erb</p>
+<!doctype html>
+<html lang="en" ngapp>
+    <head>
+        <meta charset="utf8">
+        <title>A Test Angular App</title>
+        <link rel="stylesheet" href="css/angular.css"/>
+        <script src="js/angular.js"></script>
+        <script src="js/controllers/controllers.js"></script>
+      </head>
+    <body ngcontroller="PostListCtrl">
+        <div ngrepeat="post in posts">
+            <h1>{{post.id}}</h1>
+            <p ngbindhtmlunsafe="{{post.text}}"></p>
+            <ul style="display:none">
+                <li ngrepeat="tag in post.tags">
+                  {{tag}}
+                </li>
+              </ul>
+          </div>
+        <a href="#" ngclick="nextPage()">More...</a>
+      </body>
+  </html>
