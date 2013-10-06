@@ -60,8 +60,8 @@ class Post
   def process_tags
     unit_hash = Hash[units.map {|e| [e,e]}]
     user.units |= units
+    tags.merge! unit_hash || {}
     user.tags.merge! tags || {}
     user.save
-    tags.merge! unit_hash || {}
   end
 end
