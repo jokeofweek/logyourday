@@ -17,9 +17,13 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
 
     if @post.save
-      redirect_to user_posts_path current_user.id
+      redirect_to posts_path  
     else
       redirect_to :root
     end
+  end
+
+  def tag
+   @posts = Post.with_all_tags(params[:tag]).page(params[:page],params[:limit])
   end
 end

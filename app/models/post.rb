@@ -1,10 +1,10 @@
 class Post
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::TagsArentHard
   belongs_to :user
 
   field :message
-  field :tags, type: Array
-
+  taggable_with :tags
 
 end
