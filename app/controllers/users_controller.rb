@@ -8,4 +8,12 @@ class UsersController < ApplicationController
         render nothing: true
     end
   end
+
+  def tags
+    @tags = current_user.tags.keys
+  end
+
+  def units
+    @units = current_user.units
+  end
 end

@@ -14,28 +14,38 @@ class PostsController < ApplicationController
   end
 
   def create
-    tags = getTags(params[:message])
-    @post = current_user.posts.new(tags: tags, message: params[:message])
-    if @post.save
-      redirect_to user_posts current_user
+    post = Post.new
+    message = params[:message]
+    post.message = message
+    post.user = current_user
+    verb_tag = Post.getVerb(message)
+    tags = getTags(message)
+    tags = tags.merge(verb_tag) unless verb_tag.nil?
+    if tags.nil?
+      redirect_to posts_url 
     else
-      redirect_to :root
+      post.tags = tags
+      post.metrics = getAmount(message)
+      post.units = []
+      post.metrics.each do |metric|
+        post.units.push(/[A-Za-z]+/.match(metric)[0])
+      end
+
+      if post.save
+        redirect_to posts_url
+      else
+        redirect_to :root
+      end
     end
   end
+
 
   def getTags(message)
     tokens = message.split(" ")
     tokens.shift if /^[Ii]$/.match(tokens[0])
-    action = ""
+    tags = {}
     tokens.each do |token|
-      if /^(for|to|in|at|on)$/.match(token) || /\d/.match(token)
-        break
-      end
-      action += token
-    end
-    tags = [action]
-    tokens.each do |token|
-      tags.push(token) if /#+\w+/.match(token)
+      tags[token] = token if /#+\w+/.match(token)
     end
     tags
   end
@@ -45,6 +55,6 @@ class PostsController < ApplicationController
   end
 
   def tag
-   @posts = Post.find_with_tag(params[:tag]).page(params[:page],params[:limit])
+   @posts = Post.with_all_tags(params[:tag]).page(params[:page],params[:limit])
   end
 end
