@@ -60,6 +60,12 @@ class PostsController < ApplicationController
       @post.save
       redirect_to :root 
     end
+
+    def destroy
+      Post.find(params[:id]).destroy
+      redirect_to :root
+    end
+
     private 
     def getTags(message)
       tokens = message.split(" ")
