@@ -45,12 +45,15 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
 
   $scope.onSubmit = function() {
     if ($scope.message) {
+      // Grab the message and then clear it.
+      var message = $scope.message;
+      $scope.message = '';
+      // Post the message
       $http.post('/posts', {
-        message: $scope.message,
+        message: message,
         utf8: "\u2713",
         authenticity_token: document.getElementById('authenticity_token').value
       }).success(function(data) {
-        $scope.message = '';
         $scope.posts.unshift(data['post']);
       });
     }
