@@ -36,28 +36,54 @@ class PostsController < ApplicationController
     end
   end
 
+  def random_post
+    time = rand(1.month.ago..Time.now)
+    string = ""
+    if rand() > 0.5
+      string = "lifted #{(rand()*300).to_i}kg."
+    else
+      string = "ran #{(rand()*15).to_i} miles."
 
-  def getTags(message)
-    tokens = message.split(" ")
-    tokens.shift if /^[Ii]$/.match(tokens[0])
-    tags = {}
-    tokens.each do |token|
-      tags[token] = token if /#+\w+/.match(token)
     end
-    tags
-  end
-
-  def getMetrics(message)
-    message.scan(/(\d+)\s*(\w*)/)
-  end
-
-  def tag
-    puts(params[:tag])
-    tags = params[:tag].split(',')
-    @posts = Post
-    tags.each do |tag|
-      @posts = @posts.with_tag(tag)
+    verb_tag = Post.getVerb(string)
+    tags = getTags(string)
+    tags = tags.merge(verb_tag) unless verb_tag.nil?
+    @post = current_user.posts.new
+    @post.tags = tags
+    @post.metrics = getMetrics(string)
+    @post.units = []
+    @post.metrics.each do |metric|
+        # Add the unit name.
+        @post.units.push(metric[1])
+      end
+      @post.message = string 
+      @post.save
+      redirect_to :root 
     end
-    @posts = @posts.page(params[:page],params[:limit])
+    private 
+    def getTags(message)
+      tokens = message.split(" ")
+      tokens.shift if /^[Ii]$/.match(tokens[0])
+      tags = {}
+      tokens.each do |token|
+        tags[token] = token if /#+\w+/.match(token)
+      end
+      tags
+    end
+
+    def getMetrics(message)
+      message.scan(/(\d+)\s*(\w*)/)
+    end
+
+    def tag
+      puts(params[:tag])
+      tags = params[:tag].split(',')
+      @posts = Post
+      tags.each do |tag|
+        @posts = @posts.with_tag(tag)
+      end
+      @posts = @posts.page(params[:page],params[:limit])
+    end
+
+
   end
-end

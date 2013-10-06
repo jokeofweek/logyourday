@@ -46,6 +46,7 @@ class Post
       http.request(req)
     end
     response = JSON.parse(res.body)
+    p response
     if response['relations'].present?
       normal = response['relations'][0]['action']['lemmatized']
       actual = response['relations'][0]['action']['text']

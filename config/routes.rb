@@ -6,12 +6,13 @@ Logyourday::Application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   resources :posts
   root to: "streams#index"
-  get '/users/current', to: 'users#current'
   get '/users/tags', to: 'users#tags'
   get '/users/units', to: 'users#units'
+    get '/post/random',to:'posts#random_post'
   resources :posts
   get '/posts/tag/:tag', to: 'posts#tag' 
   get '/graph', to: 'graph#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
