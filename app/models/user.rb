@@ -10,7 +10,7 @@ class User
     def page(page,limit)
       page ||= 0
       limit ||= 25
-    skip(page.to_i*limit.to_i).limit(limit.to_i)
+    order_by(:created_at.desc).skip(page.to_i*limit.to_i).limit(limit.to_i)
   end 
 end
 
