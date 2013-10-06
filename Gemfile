@@ -32,8 +32,6 @@ gem 'byebug'
 gem 'mongoid',github: 'mongoid/mongoid'
 gem 'bson_ext'
 
-gem 'mongoid-tags-arent-hard'
-
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 group :doc do

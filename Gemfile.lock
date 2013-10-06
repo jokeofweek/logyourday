@@ -78,8 +78,6 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25)
     minitest (4.7.5)
-    mongoid-tags-arent-hard (1.1.4)
-      mongoid (>= 3.0.0)
     moped (2.0.0.beta2)
       bson (~> 2.0.0.rc2)
       optionable (~> 0.1.1)
@@ -174,7 +172,6 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   mongoid!
-  mongoid-tags-arent-hard
   oj
   omniauth-facebook
   omniauth-twitter
