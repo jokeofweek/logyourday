@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
- # before_filter :authorize
+  before_filter :authorize
 
   def index
-    @posts = current_user.posts.page(params[:page].to_i,params[:limit].to_i)
+    @posts = current_user.posts.page(params[:page],params[:limit])
     @tags = getTags(params[:message])
     puts params[:message]
     puts Post.getVerb(params[:message])
@@ -21,7 +21,6 @@ class PostsController < ApplicationController
   def create
     tags = getTags(params[:message])
     
-
 
 #    if @post.save
 #      redirect_to user_posts current_user
@@ -50,5 +49,9 @@ class PostsController < ApplicationController
 
   def getAmount(message)
     message.scan(/\d+ *\w*/)
+  end
+
+  def tag
+   @posts = Post.with_all_tags(params[:tag]).page(params[:page],params[:limit])
   end
 end

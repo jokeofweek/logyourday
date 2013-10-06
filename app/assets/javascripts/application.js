@@ -13,5 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
 //= require bootstrap
+//= require angular
+//= require angular-sanitize
+//= require moment
+//= require_tree .
