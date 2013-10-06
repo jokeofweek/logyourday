@@ -75,14 +75,13 @@ class PostsController < ApplicationController
       message.scan(/(\d+)\s*(\w*)/)
     end
 
-    def tag
-      puts(params[:tag])
-      tags = params[:tag].split(',')
-      @posts = Post
-      tags.each do |tag|
-        @posts = @posts.with_tag(tag)
-      end
-      @posts = @posts.page(params[:page],params[:limit])
+  def tag
+    puts(params[:tag])
+    tags = params[:tag].split(',')
+    @posts = Post
+    tags.each do |tag|
+      @posts = @posts.with_tag(URI.unescape(tag))
+
     end
 
 

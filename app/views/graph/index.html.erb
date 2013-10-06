@@ -8,12 +8,13 @@
         </div>
         <div class="col-md-2 col-lg-2">
             <h1>Y-Axis</h1>
-            <div class="thumbnail" data-drop="true" data-jqyoui-options ng-model="yAxis" jqyoui-droppable="{onDrop: 'updateAxis'}" style='height:50px;'>
+            <div class="thumbnail" data-drop="true" data-jqyoui-options ng-model="yAxis" jqyoui-droppable="{onDrop: 'updateGraph'}" style='height:50px;'>
               <div ng-model="yAxis" ng-hide="!yAxis">{{yAxis}}</div>
             </div>
         </div>
         <div class="col-md-8 col-lg-8">
-        C
+            <div id="graph-area">
+            </div>
         </div>
     </div>
     <div class="row">
@@ -22,7 +23,7 @@
             <ul>
                 <li ng-repeat="tag in tags">
                     <label>
-                    <input type="checkbox" ng-checked="tag.checked" ng-model="tag.checked">
+                    <input type="checkbox" ng-change="updateGraph()" ng-checked="tag.checked" ng-model="tag.checked">
                     {{tag.name}}
                     </label>
                 </li>
@@ -30,7 +31,7 @@
         </div>
         <div class="col-md-8 col-lg-8">
             <h1>X-Axis</h1>
-            <div class="thumbnail" data-drop="true" data-jqyoui-options ng-model="xAxis" jqyoui-droppable="{onDrop: 'updateAxis'}" style='height:50px;'>
+            <div class="thumbnail" data-drop="true" data-jqyoui-options ng-model="xAxis" jqyoui-droppable="{onDrop: 'updateGraph'}" style='height:50px;'>
               <div ng-model="xAxis" ng-hide="!xAxis">{{xAxis}}</div>
             </div>
         </div>
