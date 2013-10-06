@@ -26,15 +26,11 @@ body {
   border: 0;
   border-bottom: 1px solid #aaa;
 }
-.posts-container form .submit{
-  border-radius: 10px;
-  border: 1px solid #aaa;
-  background-color: white;
-  padding: 0 15px 0 15px;
-  color: #555;
-}
-.posts-container form .submit:hover {
-  background-color: rgb(225, 225, 225)
+.posts-container form .submit,
+#posts-form button{
+  border: none;
+  padding: 0 5px 0 5px;
+  background-color: transparent;
 }
 
 .post {
@@ -54,7 +50,7 @@ p {
 }
 
 input#message {
-  width: 550px;
+  width: 525px;
   font-size: 30px;
   padding-left: 18px;
   background-color:transparent;

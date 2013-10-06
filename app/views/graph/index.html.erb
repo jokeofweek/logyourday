@@ -14,7 +14,11 @@
               <div ng-model="yAxis" ng-hide="yAxis" class="drop-help-label">Drop unit here...</div>
             </div>
         </div>
-        <div class="col-md-8 col-lg-8">
+        <div class="col-md-8 col-lg-8 graph-container">
+            <h1>
+                <button class="icon-list" title="Stream" ng-click="stream()"></button>
+                <button class="icon-signout" title="Logout" ng-click="logout()"></button>
+            </h1>
             <div id="graph-area">
             </div>
         </div>

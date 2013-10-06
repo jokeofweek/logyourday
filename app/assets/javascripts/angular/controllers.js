@@ -61,6 +61,14 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
 		$scope.posts.push(generatePost());
   };
 
+  $scope.logout = function() {
+    window.location = '/logout';
+  };
+
+  $scope.graphs = function() {
+    window.location = '/graph';
+  };
+
 }]);
 
 module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
@@ -268,4 +276,14 @@ module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
       .text(function(d) { return 'x: ' + d.x + ', y: ' + d.y; });
 
   };
+
+
+  $scope.logout = function() {
+    window.location = '/logout';
+  };
+
+  $scope.stream = function() {
+    window.location = '/';
+  };
+
 }]);
