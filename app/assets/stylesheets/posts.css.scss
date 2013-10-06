@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+  background-image:url('/cream_pixels.png');
+}
 
 .posts-container {
   padding-top:50px;
@@ -16,9 +19,6 @@
   font-family: 'Arapey';
   font-weight:bold;
 }
-.posts-container label {
-  font-weight: 400;
-}
 .posts-container form #message{
   border: 0;
   border-bottom: 1px solid #aaa;
@@ -28,7 +28,7 @@
   border: 1px solid #aaa;
   background: none;
   padding: 0 15px 0 15px;
-  color: #333;
+  color: #555;
 }
 .post {
   margin: 20px 0 20px 0;
@@ -38,4 +38,18 @@ p {
 }
 .post-time{
   float:right;
+  font-size: 24px;
+  color: #AAA;
+}
+
+input#message {
+  width: 550px;
+  font-size: 30px;
+  padding-left: 18px;
+  background-color:transparent;
+}
+
+form#posts-form {
+  border-bottom: 2px solid #aaa;
+  padding-bottom: 27px;
 }

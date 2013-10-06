@@ -1,7 +1,7 @@
 <div class="posts-container"  ng-controller="PostListCtrl">
-  <form accept-charset="UTF-8" ng-submit="onSubmit()"><div style="margin:0;padding:0;display:inline"><input id="authenticity_token" name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" /></div>
+  <form id="posts-form" accept-charset="UTF-8" ng-submit="onSubmit()"><div style="margin:0;padding:0;display:inline"><input id="authenticity_token" name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" /></div>
     <label for="message">Today, I</label>
-    <input id="message" name="message" ng-model="message" type="text" />
+    <input id="message" name="message" ng-model="message" placeholder='slept 0 hours #hackMIT #yolo' type="text" />
     <input class="submit" name="commit" type="submit" value="Log" />
   </form>
   <section>
