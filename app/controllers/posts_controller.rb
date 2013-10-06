@@ -33,14 +33,7 @@ class PostsController < ApplicationController
   def getTags(message)
     tokens = message.split(" ")
     tokens.shift if /^[Ii]$/.match(tokens[0])
-    action = ""
-    tokens.each do |token|
-      if /^(for|to|in|at|on)$/.match(token) || /\d/.match(token)
-        break
-      end
-      action += token
-    end
-    tags = [action]
+    tags = []
     tokens.each do |token|
       tags.push(token) if /#+\w+/.match(token)
     end
