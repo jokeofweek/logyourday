@@ -37,7 +37,7 @@ class PostsController < ApplicationController
   end
 
   def random_post
-    (1..100).each do |i|
+    (1..(params[:val].to_i)).each do |i|
       generate_random_post
     end
     redirect_to :root

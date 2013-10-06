@@ -39,3 +39,24 @@ svg .axis text {
 #graph-area {
     height: 400px;
 }
+
+.drop-help-label {
+    color: rgb(150, 150, 150)
+}
+
+#yaxis-thumbnail {
+    height: 300px;
+    text-align:center;
+    vertical-align:middle;
+}
+
+#xaxis-thumbnail {
+    height: 70px;
+    text-align:center;
+}
+
+#units-list .btn {
+    margin-bottom: 10px;
+}
+
+#filters-list label {margin-right: 10px; }

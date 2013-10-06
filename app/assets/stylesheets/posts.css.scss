@@ -29,10 +29,14 @@ body {
 .posts-container form .submit{
   border-radius: 10px;
   border: 1px solid #aaa;
-  background: none;
+  background-color: white;
   padding: 0 15px 0 15px;
   color: #555;
 }
+.posts-container form .submit:hover {
+  background-color: rgb(225, 225, 225)
+}
+
 .post {
   margin: 20px 0 20px 0;
 }

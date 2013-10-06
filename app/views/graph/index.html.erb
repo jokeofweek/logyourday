@@ -1,7 +1,7 @@
 <div class="container" ng-controller="PostGraphCtrl">
     <input type="hidden" id="preset-tags" value="<%= @tag %>"/>
     <div class="row">
-        <div class="col-md-2 col-lg-2">
+        <div class="col-md-2 col-lg-2" id="units-list">
             <h1>Units</h1>
             <div ng-repeat="unit in units">
                 <div class="btn btn-primary" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="units" jqyoui-draggable="{index: {{$index}},placeholder: 'keep'}">{{unit}}</div>
@@ -9,8 +9,9 @@
         </div>
         <div class="col-md-2 col-lg-2">
             <h1>Y-Axis</h1>
-            <div class="thumbnail" data-drop="true" data-jqyoui-options ng-model="yAxis" jqyoui-droppable="{onDrop: 'updateGraph'}" style='height:50px;'>
+            <div class="thumbnail" id="yaxis-thumbnail" data-drop="true" data-jqyoui-options ng-model="yAxis" jqyoui-droppable="{onDrop: 'updateGraph'}">
               <div ng-model="yAxis" ng-hide="!yAxis">{{yAxis}}</div>
+              <div ng-model="yAxis" ng-hide="yAxis" class="drop-help-label">Drop unit here...</div>
             </div>
         </div>
         <div class="col-md-8 col-lg-8">
@@ -19,21 +20,18 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 col-lg-4">
+        <div class="col-md-4 col-lg-4" id="filters-list">
             <h1>Filters</h1>
-            <ul>
-                <li ng-repeat="tag in tags">
-                    <label>
-                    <input type="checkbox" ng-change="updateGraph()" ng-checked="tag.checked" ng-model="tag.checked">
-                    {{tag.name}}
-                    </label>
-                </li>
-            </ul>
+            <label ng-repeat="tag in tags">
+            <input type="checkbox" ng-change="updateGraph()" ng-checked="tag.checked" ng-model="tag.checked">
+            {{tag.name}}
+            </label>
         </div>
         <div class="col-md-8 col-lg-8">
             <h1>X-Axis</h1>
-            <div class="thumbnail" data-drop="true" data-jqyoui-options ng-model="xAxis" jqyoui-droppable="{onDrop: 'updateGraph'}" style='height:50px;'>
+            <div class="thumbnail" id="xaxis-thumbnail" data-drop="true" data-jqyoui-options ng-model="xAxis" jqyoui-droppable="{onDrop: 'updateGraph'}">
               <div ng-model="xAxis" ng-hide="!xAxis">{{xAxis}}</div>
+              <div ng-model="xAxis" ng-hide="xAxis" class="drop-help-label">Drop unit here...</div>
             </div>
         </div>
     </div>

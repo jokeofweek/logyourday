@@ -8,7 +8,7 @@ Logyourday::Application.routes.draw do
   root to: "streams#index"
   get '/users/tags', to: 'users#tags'
   get '/users/units', to: 'users#units'
-    get '/post/random',to:'posts#random_post'
+  get '/post/random/:val',to:'posts#random_post'
   resources :posts
   get '/posts/tag/:tag', to: 'posts#tag' 
   get '/graph', to: 'graph#index'

@@ -76,11 +76,21 @@ module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
     for (var i = 0, l = data.length; i < l; i++) {
       tags.push({name: data[i], checked: data[i] == preset});
     }
+
+    tags.sort(function(a, b) {
+      if (a.name == b.name) {
+        return 0;
+      } else {
+        return (a.name < b.name) ? -1 : 1;
+      }
+    });
+
     $scope.tags = tags;
   });
   // Fetch units 
   $http.get('/users/units.json').success(function(data) {
     var units = data ? data['units'] : []
+    units.sort();
     units.unshift(POST_DATE);
     $scope.units = units;
   });
@@ -161,14 +171,14 @@ module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
         scale(scale).
         orient(orient).
         tickFormat(d3.time.format("%d %b")).
-        ticks(8);
+        ticks(6);
     } else {
       return d3.svg.axis().
         scale(scale).
         orient(orient).
         tickFormat(function (d) { return d; }).
         tickSize(5, 5, 0).
-        ticks(8);
+        ticks(6);
     }
   };
 
