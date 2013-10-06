@@ -66,6 +66,18 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
   };
 }]);
 
+module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
+  $scope.units = ['Date', 'Kilometers', 'Pages', '$', 'Calories', 'Hours'];
+  $scope.tags = [
+    {name: 'run', checked: false},
+    {name: 'swim', checked: false},
+    {name: '#marathon', checked: false}];
+
+
+  $scope.yAxis = undefined;
+  $scope.xAxis = undefined;
+}]);
+
 /*
 var CategoryListCtrl = ['$scope', '$http', function($scope, $http) {
 	var url = 'categories';

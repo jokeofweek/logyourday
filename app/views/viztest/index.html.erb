@@ -1,0 +1,38 @@
+<div class="container" ng-controller="PostGraphCtrl">
+    <div class="row">
+        <div class="col-md-2 col-lg-2">
+            <h1>Units</h1>
+            <div ng-repeat="unit in units">
+                <div class="btn btn-primary" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="units" jqyoui-draggable="{index: {{$index}},placeholder: 'keep'}">{{unit}}</div>
+            </div>
+        </div>
+        <div class="col-md-2 col-lg-2">
+            <h1>Y-Axis</h1>
+            <div class="thumbnail" data-drop="true" data-jqyoui-options ng-model="yAxis" jqyoui-droppable style='height:50px;'>
+              <div ng-model="yAxis" ng-hide="!yAxis">{{yAxis}}</div>
+            </div>
+        </div>
+        <div class="col-md-8 col-lg-8">
+        C
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-lg-4">
+            <h1>Filters</h1>
+            <ul>
+                <li ng-repeat="tag in tags">
+                    <label>
+                    <input type="checkbox" ng-checked="tag.checked" ng-model="tag.checked">
+                    {{tag.name}}
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8 col-lg-8">
+            <h1>X-Axis</h1>
+            <div class="thumbnail" data-drop="true" data-jqyoui-options ng-model="xAxis" jqyoui-droppable style='height:50px;'>
+              <div ng-model="xAxis" ng-hide="!xAxis">{{xAxis}}</div>
+            </div>
+        </div>
+    </div>
+</div>

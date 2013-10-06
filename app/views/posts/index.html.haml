@@ -1,5 +1,5 @@
 %body
-  = form_tag("/posts", method: "get") do 
+  = form_tag("/posts", method: "post") do 
     = label_tag(:message, "Today, I ") 
     = text_field_tag(:message)
     = submit_tag("Log Activitiy")

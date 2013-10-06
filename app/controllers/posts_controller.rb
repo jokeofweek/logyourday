@@ -20,15 +20,12 @@ class PostsController < ApplicationController
 
   def create
     tags = getTags(params[:message])
-    
-
-#    if @post.save
-#      redirect_to user_posts current_user
-#    else
-#      redirect_to :root
-#    end
+    if @post.save
+      redirect_to user_posts current_user
+    else
+      redirect_to :root
+    end
   end
-
 
   def getTags(message)
     tokens = message.split(" ")
@@ -45,6 +42,6 @@ class PostsController < ApplicationController
   end
 
   def tag
-   @posts = Post.with_all_tags(params[:tag]).page(params[:page],params[:limit])
+   @posts = Post.find_with_tag(params[:tag]).page(params[:page],params[:limit])
   end
 end

@@ -38,8 +38,8 @@ class Post
 
   def self.getVerb(message)
     url = URI.parse('http://access.alchemyapi.com/calls/text/TextGetRelations?apikey=' + ENV['ALCHEMY_API_KEY'])
-    message = URI.escape(message)
-    puts message
+    #message = URI.escape(message)
+    #puts message
     req = Net::HTTP::Post.new(url)
     req.set_form_data('text' => message, 'outputMode' => 'json')
     req['Content-type'] = "application/x-www-form-urlencoded"
