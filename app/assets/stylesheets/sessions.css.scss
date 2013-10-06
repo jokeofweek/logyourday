@@ -1,9 +1,11 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:800);
 
 .login-container {
-    background: asset-url("bg.jpg", image) no-repeat center center fixed;
+    font-family: 'Open Sans';
+    //background: asset-url("bg.jpg", image) no-repeat center center fixed;
     background-size: cover;
     -webkit-background-origin:border;
     min-height: 100%;
@@ -18,6 +20,14 @@
     padding-top: 10px;
 }
 
+.btn.btn-facebook {
+    background-color: #4c66a4;
+    border:none;
+}
+.btn.btn-twitter {
+    background-color:#1dcaff;
+    border: none;
+}
 .form-signin {
     max-width: 300px;
     padding: 19px 29px 29px;
