@@ -39,13 +39,15 @@ class Post
   def self.getVerb(message)
     url = URI.parse('http://access.alchemyapi.com/calls/text/TextGetRelations?apikey=' + ENV['ALCHEMY_API_KEY'])
     req = Net::HTTP::Post.new(url)
-    req.set_form_data('text' => 'Denis ' + message, 'outputMode' => 'json')
+    req.set_form_data('text' => ('Denis ' + message).gsub(/\+/,"%20"), 'outputMode' => 'json')
+    puts 'Denis ' + message
     req['Content-type'] = "application/x-www-form-urlencoded"
     req['Accept-Encoding'] = 'identity'
     res = Net::HTTP.start(url.hostname, url.port) do |http|
       http.request(req)
     end
     response = JSON.parse(res.body)
+    puts response
     if response['relations'].present?
       normal = response['relations'][0]['action']['lemmatized']
       actual = response['relations'][0]['action']['text']
