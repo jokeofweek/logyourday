@@ -22,7 +22,7 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
 		str = str.replace(/[#]+[A-Za-z0-9-_]+/g, function(hash) {
 			// Only replace the hash if it's in the set of tags.
 			if (hash && tags[hash]) {
-				return '<a href=/graph/' + encodeURIComponent(tags[hash]) + ' class="tag_link">' + hash + '</a>';
+				return '<a target="_self" href=/graph/' + encodeURIComponent(tags[hash]) + ' class="tag_link">' + hash + '</a>';
 			} else {
 				return hash;
 			}
@@ -30,7 +30,7 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
 		// Replace all words with links.
     var tagReplacer =  function(tag) {
       if (tag && tag.length > 0 && tag.charAt(0) != '#' && tags[tag]) {
-        return '<a href=/graph/' + encodeURIComponent(tags[tag]) + ' class="tag_link">' + tag + '</a>';
+        return '<a target="_self" href=/graph/' + encodeURIComponent(tags[tag]) + ' class="tag_link">' + tag + '</a>';
       } else {
         return tag;
       }
@@ -60,6 +60,7 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
   $scope.nextPage = function() {
 		$scope.posts.push(generatePost());
   };
+
 }]);
 
 module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
