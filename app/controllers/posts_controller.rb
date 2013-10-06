@@ -14,25 +14,25 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new
+    @post = Post.new
     message = params[:message]
-    post.message = message
-    post.user = current_user
+    @post.message = message
+    @post.user = current_user
     verb_tag = Post.getVerb(message)
     tags = getTags(message)
     tags = tags.merge(verb_tag) unless verb_tag.nil?
     if tags.nil?
       redirect_to :root 
     else
-      post.tags = tags
-      post.metrics = getAmount(message)
-      post.units = []
-      post.metrics.each do |metric|
-        post.units.push(/[A-Za-z]+/.match(metric)[0])
+      @post.tags = tags
+      @post.metrics = getAmount(message)
+      @post.units = []
+      @post.metrics.each do |metric|
+        @post.units.push(/[A-Za-z]+/.match(metric)[0])
       end
 
-      post.save
-      redirect_to :root
+      @post.save
+      redirect_to @post
     
     end
   end
