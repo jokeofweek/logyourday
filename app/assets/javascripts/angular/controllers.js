@@ -22,7 +22,7 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
 		str = str.replace(/[#]+[A-Za-z0-9-_]+/g, function(hash) {
 			// Only replace the hash if it's in the set of tags.
 			if (hash && tags[hash]) {
-				return '<a href="#" class="tag_link">' + hash + '</a>';
+				return '<a href="/graph/' + tags[hash] + '" class="tag_link">' + hash + '</a>';
 			} else {
 				return hash;
 			}
@@ -30,7 +30,7 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
 		// Replace all words with links.
 		str = str.replace(/(\w+)/g, function(tag) {
 			if (tag && tag.length > 0 && tag.charAt(0) != '#' && tags[tag]) {
-				return '<a href="#" class="tag_link">' + tag + '</a>';
+			return '<a href="/graph/' + tags[tag] + '" class="tag_link">' + tag + '</a>';
 			} else {
 				return tag;
 			}
@@ -89,16 +89,17 @@ module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
     // Find all checked tags.
     for (var i = 0, l = $scope.tags.length; i < l; i++) {
       if ($scope.tags[i].checked) {
-        filters.push($scope.tags[i].name);
+        filters.push(encodeURIComponent($scope.tags[i].name));
       }
     }
     // If we have axes and they're not the date, then add in.
     if ($scope.xAxis && $scope.xAxis != POST_DATE) {
-      filters.push($scope.xAxis);
+      filters.push(encodeURIComponent($scope.xAxis));
     }
     if ($scope.yAxis && $scope.yAxis != POST_DATE) {
-      filters.push($scope.yAxis);
+      filters.push(encodeURIComponent($scope.yAxis));
     }
+    
     return filters.join(',');
   };
 

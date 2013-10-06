@@ -56,7 +56,7 @@ class PostsController < ApplicationController
     tags = params[:tag].split(',')
     @posts = Post
     tags.each do |tag|
-      @posts = @posts.with_tag(tag)
+      @posts = @posts.with_tag(URI.unescape(tag))
     end
     @posts = @posts.page(params[:page],params[:limit])
   end
