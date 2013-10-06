@@ -14,6 +14,6 @@ class UsersController < ApplicationController
   end
 
   def units
-    @units = current_user.units.keys
+    @units = current_user.units
   end
 end
