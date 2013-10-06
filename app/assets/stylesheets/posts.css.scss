@@ -1,3 +1,35 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.posts-container {
+  padding-top:50px;
+  font-size: 36px;
+  font-family: 'Arapey';
+  font-weight: 300;
+  font-style: italic;
+  width:800px;
+  margin:auto;
+}
+.posts-container h1{
+  font-family: 'Arapey';
+  font-weight:bold;
+}
+.posts-container label {
+  font-weight: 400;
+}
+.posts-container form #message{
+  border: 0;
+  border-bottom: 1px solid #aaa;
+}
+.posts-container form .submit{
+  border-radius: 10px;
+  border: 1px solid #aaa;
+  background: none;
+  padding: 0 15px 0 15px;
+  color: #333;
+}
+.post {
+  margin: 20px 0 20px 0;
+}

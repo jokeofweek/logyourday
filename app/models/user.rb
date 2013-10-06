@@ -8,7 +8,7 @@ class User
   field :identifier
 
   field :units, type: Array, default: []
-  field :tags, type: Hash, default: {}
+  field :tags , type: Hash, default: {}
   has_many :posts 
 
   def self.find_or_create_by_auth(auth_hash)

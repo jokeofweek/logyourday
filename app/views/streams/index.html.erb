@@ -1,19 +1,18 @@
-<body>
+<div class="posts-container">
   <%= form_tag("/posts", method: "post") do %>
-    <%= label_tag(:message, "Today, I:") %>
-    <%= text_field_tag(:message) %>
-    <%= submit_tag("Log Activitiy") %>
+  <%= label_tag(:message, "Today, I") %>
+  <%= text_field_tag(:message) %>
+  <%= submit_tag "Log",:class => "submit" %>
   <% end %>
 
 
-  </form>
-  <div ng-controller="PostListCtrl">
-    <h1>Recent Posts</h1>
-    <div ng-repeat="post in posts">
-      <div class="post">
-        <p class="post-content" ng-bind-html="transform(post.message, post.tags)"></p>
-        <p class="post-time">{{relativeTime(post.created_at)}}</p>
-      </div>
-    </div>
-   <a href="#" ng-click="nextPage()">More...</a>
- </body>
+</form>
+<section ng-controller="PostListCtrl">
+  <h1>Recent Posts</h1>
+  <div class="post" ng-repeat="post in posts">
+    <p class="post-content" ng-bind-html="transform(post.message, post.tags)"></p>
+    <p class="post-time">{{relativeTime(post.created_at)}}</p>
+  </div>
+  <a href="#" ng-click="nextPage()">More...</a>
+</section> 
+</div>

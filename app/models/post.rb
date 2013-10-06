@@ -23,7 +23,7 @@ class Post
   def self.page(page,limit)
     page ||= 0
     limit ||= 25
-    order_by(:created_at.desc).skip(page.to_i*limit.to_i).limit(limit.to_i)
+    skip(page.to_i*limit.to_i).limit(limit.to_i).desc(:created_at)
   end 
 
   #returns posts with the given tag

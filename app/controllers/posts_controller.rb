@@ -3,11 +3,6 @@ class PostsController < ApplicationController
 
   def index
     @posts = current_user.posts.page(params[:page],params[:limit])
-    @tags = getTags(params[:message])
-    puts params[:message]
-    puts Post.getVerb(params[:message])
-    puts @tags
-    puts @amount
   end
 
   def show 
@@ -20,6 +15,7 @@ class PostsController < ApplicationController
 
   def create
     tags = getTags(params[:message])
+    @post = current_user.posts.new(tags: tags, message: params[:message])
     if @post.save
       redirect_to user_posts current_user
     else
