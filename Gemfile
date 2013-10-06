@@ -26,12 +26,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'haml'
+gem 'json'
 gem 'rabl'
 gem 'oj'
 gem 'byebug'
 gem 'mongoid',github: 'mongoid/mongoid'
 gem 'bson_ext'
-
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 group :doc do
@@ -51,3 +51,4 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem "font-awesome-rails"
+gem "jquery-ui-rails"

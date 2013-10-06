@@ -4,10 +4,12 @@ Logyourday::Application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
+  resources :posts
   root to: "streams#index"
   get '/users/current', to: 'users#current'
   resources :posts
   get '/posts/tag/:tag', to: 'posts#tag' 
+  get '/viztest', to: 'viztest#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
