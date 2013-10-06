@@ -32,7 +32,7 @@ class PostsController < ApplicationController
       end
 
       @post.save
-      redirect_to @post
+      redirect_to :root
     
     end
   end
