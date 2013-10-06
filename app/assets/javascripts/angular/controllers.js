@@ -17,7 +17,7 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
       tags[tagsObj[key]] = key;
     }
     // Add the I in the front
-    str = "I " + str.trim();
+    str = str.trim();
 		// Replace all hashtags with links.
 		str = str.replace(/[#]+[A-Za-z0-9-_]+/g, function(hash) {
 			// Only replace the hash if it's in the set of tags.
@@ -276,7 +276,6 @@ module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
       .text(function(d) { return 'x: ' + d.x + ', y: ' + d.y; });
 
   };
-
 
   $scope.logout = function() {
     window.location = '/logout';
