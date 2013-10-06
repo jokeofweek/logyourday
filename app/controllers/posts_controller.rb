@@ -24,6 +24,6 @@ class PostsController < ApplicationController
   end
 
   def tag
-   @posts = Post.with_all_tags(params[:tag]).page(params[:page],params[:limit])
+   @posts = Post.find_with_tag(params[:tag]).page(params[:page],params[:limit])
   end
 end
