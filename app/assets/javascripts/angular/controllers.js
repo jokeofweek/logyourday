@@ -172,6 +172,18 @@ module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
     }
   };
 
+  function getXSorter(xAxis) {
+    if (xAxis == POST_DATE) {
+      return function(a, b) {
+        return a.x.getTime() - b.x.getTime();
+      };
+    } else {
+      return function(a, b) {
+        return a.x - b.x;
+      }
+    }
+  }
+
   function renderGraph(data) {
     var dataSet = [];
     // Generate all points
@@ -189,6 +201,13 @@ module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
       dataSet.push(obj);
     }
 
+    d3.select('#graph-area svg').remove();
+    if (dataSet.length == 0) {
+      return;
+    }
+
+    dataSet.sort(getXSorter($scope.xAxis));
+
     var xScale = getScale('x', $scope.xAxis, dataSet, padding, width - padding);
     var yScale = getScale('y', $scope.yAxis, dataSet, height - padding, padding);
 
@@ -196,7 +215,6 @@ module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
     var yAxis = getAxis($scope.yAxis, yScale, 'left');
 
     // Remove old svg.
-    d3.select('#graph-area svg').remove();
     var svg = d3.select("#graph-area").
       append("svg").
       attr("viewBox", "0 0 " + width + " " + height);
@@ -235,7 +253,9 @@ module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
       .attr("cy", function(d) {
           return yScale(d.y);
       })
-      .attr("r", 5)
+      .attr("r", 3)
+      .append("svg:title")
+      .text(function(d) { return 'x: ' + d.x + ', y: ' + d.y; });
 
   };
 }]);

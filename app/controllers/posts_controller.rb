@@ -40,17 +40,19 @@ class PostsController < ApplicationController
     time = rand(1.month.ago..Time.now)
     string = ""
     if rand() > 0.5
-      string = "lifted #{(rand()*300).to_i}kg."
+      string = "lifted #{(rand()*300).to_i} pounds."
     else
-      string = "ran #{(rand()*15).to_i} miles."
+      vals = (rand()*15).to_i + 1
+      string = "ran #{vals} miles in #{vals*((rand() * 3).to_i + 4)} minutes."
 
     end
-    verb_tag = Post.getVerb(string)
+    verb_tag = Post.getVerb((string))
     tags = getTags(string)
     tags = tags.merge(verb_tag) unless verb_tag.nil?
     @post = current_user.posts.new
     @post.tags = tags
     @post.metrics = getMetrics(string)
+    @post.created_at = time
     @post.units = []
     @post.metrics.each do |metric|
         # Add the unit name.
@@ -59,7 +61,16 @@ class PostsController < ApplicationController
       @post.message = string 
       @post.save
       redirect_to :root 
+  end
+
+  def tag
+    tags = params[:tag].split(',')
+    @posts = Post
+    tags.each do |tag|
+      @posts = @posts.with_tag(URI.unescape(tag))
     end
+  end
+
     private 
     def getTags(message)
       tokens = message.split(" ")
@@ -75,14 +86,5 @@ class PostsController < ApplicationController
       message.scan(/(\d+)\s*(\w*)/)
     end
 
-  def tag
-    puts(params[:tag])
-    tags = params[:tag].split(',')
-    @posts = Post
-    tags.each do |tag|
-      @posts = @posts.with_tag(URI.unescape(tag))
-
-    end
-  end
 
   end
