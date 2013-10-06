@@ -37,30 +37,10 @@ class PostsController < ApplicationController
   end
 
   def random_post
-    time = rand(1.month.ago..Time.now)
-    string = ""
-    if rand() > 0.5
-      string = "lifted #{(rand()*300).to_i} pounds."
-    else
-      vals = (rand()*15).to_i + 1
-      string = "ran #{vals} miles in #{vals*((rand() * 3).to_i + 4)} minutes."
-
+    (1..100).each do |i|
+      generate_random_post
     end
-    verb_tag = Post.getVerb((string))
-    tags = getTags(string)
-    tags = tags.merge(verb_tag) unless verb_tag.nil?
-    @post = current_user.posts.new
-    @post.tags = tags
-    @post.metrics = getMetrics(string)
-    @post.created_at = time
-    @post.units = []
-    @post.metrics.each do |metric|
-        # Add the unit name.
-        @post.units.push(metric[1])
-      end
-      @post.message = string 
-      @post.save
-      redirect_to :root 
+    redirect_to :root
   end
 
   def tag
@@ -85,6 +65,40 @@ class PostsController < ApplicationController
     def getMetrics(message)
       message.scan(/(\d+)\s*(\w*)/)
     end
+
+
+  def generate_random_post
+    time = rand(1.month.ago..Time.now)
+    string = ""
+    pick = rand()
+    if pick > 0.75
+      string = "lifted #{(rand()*300).to_i} pounds."
+    elsif pick > 0.5
+      vals = (rand()*15).to_i + 1
+      string = "ran #{vals} miles in #{vals*((rand() * 3).to_i + 4)} minutes."
+    elsif pick > 0.25
+      vals = (rand()*5).to_i + 5
+      string = "slept #{vals} hours. #sleepingchallenge"
+    else
+      vals1 = (rand()*6).to_i + 2
+      vals2 = (rand()*50).to_i
+      string = "bicycled #{vals2} minutes and drank #{vals1} glasses."
+    end
+    verb_tag = Post.getVerb((string))
+    tags = getTags(string)
+    tags = tags.merge(verb_tag) unless verb_tag.nil?
+    @post = current_user.posts.new
+    @post.tags = tags
+    @post.metrics = getMetrics(string)
+    @post.created_at = time
+    @post.units = []
+    @post.metrics.each do |metric|
+        # Add the unit name.
+        @post.units.push(metric[1])
+      end
+      @post.message = string 
+      @post.save
+  end
 
 
   end

@@ -161,14 +161,14 @@ module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
         scale(scale).
         orient(orient).
         tickFormat(d3.time.format("%d %b")).
-        ticks(6);
+        ticks(8);
     } else {
       return d3.svg.axis().
         scale(scale).
         orient(orient).
         tickFormat(function (d) { return d; }).
         tickSize(5, 5, 0).
-        ticks(6);
+        ticks(8);
     }
   };
 
