@@ -67,12 +67,24 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
 }]);
 
 module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
-  $scope.units = ['Date', 'Kilometers', 'Pages', '$', 'Calories', 'Hours'];
-  $scope.tags = [
-    {name: 'run', checked: false},
-    {name: 'swim', checked: false},
-    {name: '#marathon', checked: false}];
 
+  // Fetch tags and transform to checklist form.
+  $http.get('/users/tags.json').success(function(data) {
+    // Remove root object
+    data = data ? data['tags'] : [];
+    // Convert
+    var tags = [];
+    for (var i = 0, l = data.length; i < l; i++) {
+      tags.push({name: data[i], checked: false});
+    }
+    $scope.tags = tags;
+  });
+  // Fetch units 
+  $http.get('/users/units.json').success(function(data) {
+    var units = data ? data['units'] : []
+    units.unshift('Post Date');
+    $scope.units = units;
+  });
 
   $scope.yAxis = undefined;
   $scope.xAxis = undefined;
