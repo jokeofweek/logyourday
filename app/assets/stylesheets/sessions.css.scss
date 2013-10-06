@@ -46,3 +46,14 @@
     width: 100%;
     margin-top: 10px;
 }
+video {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index: -1000;
+    min-width:100%;
+    min-height:100%;
+    width:auto;
+    height:auto;
+    overflow:hidden;
+}
