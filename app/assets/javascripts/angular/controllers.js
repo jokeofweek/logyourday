@@ -108,8 +108,10 @@ module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
   $scope.xAxis = undefined;
 
   $scope.updateAxis = function(str) {
-    console.log($scope.yAxis);
-    console.log($scope.xAxis);
+    // Only update when we have a value in both axes.
+    if ($scope.yAxis && $scope.xAxis) {
+      $http.get()
+    }
   };
 }]);
 

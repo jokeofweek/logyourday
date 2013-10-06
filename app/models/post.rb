@@ -27,7 +27,7 @@ class Post
   end 
 
   #returns posts with the given tag
-  def self.find_with_tag tag
+  def self.with_tag(tag)
     exists("tags.#{tag}" => true)
   end
 

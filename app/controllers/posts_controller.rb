@@ -52,6 +52,12 @@ class PostsController < ApplicationController
   end
 
   def tag
-   @posts = Post.with_all_tags(params[:tag]).page(params[:page],params[:limit])
+    puts(params[:tag])
+    tags = params[:tag].split(',')
+    @posts = Post
+    tags.each do |tag|
+      @posts = @posts.with_tag(tag)
+    end
+    @posts = @posts.page(params[:page],params[:limit])
   end
 end
