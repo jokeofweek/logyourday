@@ -1,2 +1,7 @@
-- @posts.each do |post|
-  = render partial: "post", locals: {post: post}
+%body
+  = form_tag("/posts", method: "get") do 
+    = label_tag(:message, "Today, I ") 
+    = text_field_tag(:message)
+    = submit_tag("Log Activitiy")
+
+  = @tags
