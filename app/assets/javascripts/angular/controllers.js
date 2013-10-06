@@ -39,6 +39,8 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
     for (var key in tagsObj) {
       tags[tagsObj[key]] = key;
     }
+    // Add the I in the front
+    str = "I " + str.trim();
 		// Replace all hashtags with links.
 		str = str.replace(/[#]+[A-Za-z0-9-_]+/g, function(hash) {
 			// Only replace the hash if it's in the set of tags.
@@ -71,7 +73,7 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
         authenticity_token: document.getElementById('authenticity_token').value
       }).success(function(data) {
         $scope.message = '';
-        alert(":D");
+        $scope.posts.unshift(data['post']);
       });
     }
     return false;

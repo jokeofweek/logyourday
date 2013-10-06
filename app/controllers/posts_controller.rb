@@ -30,10 +30,8 @@ class PostsController < ApplicationController
       @post.metrics.each do |metric|
         @post.units.push(/[A-Za-z]+/.match(metric)[0])
       end
-
       @post.save
-      redirect_to :root
-    
+      redirect_to @post
     end
   end
 
