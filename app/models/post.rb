@@ -37,9 +37,9 @@ class Post
   end
 
   def self.getVerb(message)
+    debugger
     url = URI.parse('http://access.alchemyapi.com/calls/text/TextGetRelations?apikey=' + ENV['ALCHEMY_API_KEY'])
-    #message = URI.escape(message)
-    #puts message
+    message = URI.escape('Denis ' + message)
     req = Net::HTTP::Post.new(url)
     req.set_form_data('text' => message, 'outputMode' => 'json')
     req['Content-type'] = "application/x-www-form-urlencoded"
@@ -49,17 +49,22 @@ class Post
     end
     response = JSON.parse(res.body)
     puts(response)
-    normal = response['relations']['action']['lemmatized']
-    actual = response['relations']['action']['text']
-    { normal => actual }
+    if response['relations'].present?
+      normal = response['relations'][0]['action']['lemmatized']
+      actual = response['relations'][0]['action']['text']
+      { normal => actual }
+    else
+      nil
+    end
   end
+
   private
 
   def process_tags
-    unit_hash = Hash[units.map {|e| [e,true]}]
+    unit_hash = Hash[units.map {|e| [e,e]}]
     user.units |= units
-    user.tags.merge! tags
+    user.tags.merge! tags || {}
     user.save
-    tags.merge! unit_hash
+    tags.merge! unit_hash || {}
   end
 end
