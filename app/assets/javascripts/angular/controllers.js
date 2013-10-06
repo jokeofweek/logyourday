@@ -22,20 +22,21 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
 		str = str.replace(/[#]+[A-Za-z0-9-_]+/g, function(hash) {
 			// Only replace the hash if it's in the set of tags.
 			if (hash && tags[hash]) {
-				return '<a href="/graph/' + tags[hash] + '" class="tag_link">' + hash + '</a>';
+				return '<a target="_self" href=/graph/' + encodeURIComponent(tags[hash]) + ' class="tag_link">' + hash + '</a>';
 			} else {
 				return hash;
 			}
 		});
 		// Replace all words with links.
-		str = str.replace(/(\w+)/g, function(tag) {
-			if (tag && tag.length > 0 && tag.charAt(0) != '#' && tags[tag]) {
-			return '<a href="/graph/' + tags[tag] + '" class="tag_link">' + tag + '</a>';
-			} else {
-				return tag;
-			}
-		});
-		return str.trim();
+    var tagReplacer =  function(tag) {
+      if (tag && tag.length > 0 && tag.charAt(0) != '#' && tags[tag]) {
+        return '<a target="_self" href=/graph/' + encodeURIComponent(tags[tag]) + ' class="tag_link">' + tag + '</a>';
+      } else {
+        return tag;
+      }
+    }; 
+    str = str.replace(/(\w+)/g, tagReplacer);
+    return str.trim();
   };
 
   $scope.relativeTime = function(time) {
@@ -59,18 +60,21 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
   $scope.nextPage = function() {
 		$scope.posts.push(generatePost());
   };
+
 }]);
 
 module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
 
   // Fetch tags and transform to checklist form.
   $http.get('/users/tags.json').success(function(data) {
+    // Get the preset tags.
+    var preset = document.getElementById('preset-tags').value;
     // Remove root object
     data = data ? data['tags'] : [];
     // Convert
     var tags = [];
     for (var i = 0, l = data.length; i < l; i++) {
-      tags.push({name: data[i], checked: false});
+      tags.push({name: data[i], checked: data[i] == preset});
     }
     $scope.tags = tags;
   });
@@ -99,7 +103,7 @@ module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
     if ($scope.yAxis && $scope.yAxis != POST_DATE) {
       filters.push(encodeURIComponent($scope.yAxis));
     }
-    
+
     return filters.join(',');
   };
 
@@ -108,7 +112,7 @@ module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
     if ($scope.yAxis && $scope.xAxis) {
       var filterString = getFilterString();
       if (filterString.length) {
-        $http.get('posts/tag/' + filterString + '.json').success(function(data) {
+        $http.get('/posts/tag/' + filterString + '.json').success(function(data) {
           renderGraph(data);
         });
       }
@@ -235,29 +239,3 @@ module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
 
   };
 }]);
-
-/*
-var CategoryListCtrl = ['$scope', '$http', function($scope, $http) {
-	var url = 'categories';
-	var query = '?sort=name';
-
-	$http.get('proxy.php?q=' + Base64.encode(url + query)).success(function(data) {
-		$scope.categories = data.categories;
-	});
-	
-	$scope.search = function() {
-		var parameters = '';
-		
-		if ($scope.query !== '') {
-			
-			parameters = '(name=' + encodeParameter($scope.query) + '*)';
-		}
-		
-		$http.get('proxy.php?q=' + Base64.encode(url + parameters + query)).success(function(data) {
-			$scope.categories = data.categories;
-		});
-	};
-	
-	$scope.orderProp = 'name';
-}];
-*/

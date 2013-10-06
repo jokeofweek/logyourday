@@ -1,1 +1,4 @@
-angular.module('lyd', ['ngSanitize', 'ngDragDrop']);
+angular.module('lyd', ['ngSanitize', 'ngDragDrop']).
+    run(['$location', '$rootElement', function ($location, $rootElement) {
+        $rootElement.off('click');
+      }]);
