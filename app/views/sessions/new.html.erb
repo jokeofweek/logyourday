@@ -5,6 +5,36 @@
     <button class="btn btn-facebook" onclick="window.location='/auth/facebook'; return false;"><i class="icon-facebook"></i> | Connect with Facebook</button>
     <button class="btn btn-twitter" onclick="window.location='/auth/twitter'; return false;"><i class="icon-twitter"></i> | Connect with Twitter</button>
   </form>
+  <script>
+  var resize = function dimensionFunction() {
 
+    if ($('video').height() <= $(window).height()) {
+
+        $('video').height($(window).height());
+        $('video').width('auto');
+
+    } else {
+
+        $('video').width($(window).width());
+        $('video').height('auto');
+
+    }
+
+    if ($('video').width() <= $(window).width()) {
+
+        $('video').width($(window).width());
+        $('video').height('auto');
+
+    } else {
+
+        $('video').height($(window).height());
+        $('video').width('auto');
+
+    }
+
+}
+window.onresize = resize();
+resize();
+</script>
 </div>
  
