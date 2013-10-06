@@ -1,8 +1,9 @@
 <body>
-  <form>
-    <label for="post_message">Today I:</label>
-      <input name="post_message" type="text" />
-  </form>
+  <%= form_tag("/posts", method: "post") do %>
+    <%= label_tag(:message, "Search for:") %>
+    <%= text_field_tag(:message) %>
+    <%= submit_tag("Log Activitiy") %>
+  <% end %>
 
 
   </form>

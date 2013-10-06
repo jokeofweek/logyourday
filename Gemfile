@@ -26,11 +26,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'haml'
+gem 'json'
 gem 'rabl'
 gem 'oj'
 gem 'mongoid',github: 'mongoid/mongoid'
 gem 'bson_ext'
-
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 group :doc do
