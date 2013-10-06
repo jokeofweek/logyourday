@@ -1,1 +1,1 @@
-angular.module('lyd', ['ngSanitize']);
+angular.module('lyd', ['ngSanitize', 'ngDragDrop']);

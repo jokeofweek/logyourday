@@ -16,5 +16,12 @@
 //= require bootstrap
 //= require angular
 //= require angular-sanitize
+//= require angular-dragdrop
 //= require moment
+//= require jquery.ui.core
+//= require jquery.ui.widget
+//= require jquery.ui.mouse
+//= require jquery.ui.position
+//= require jquery.ui.draggable
+//= require jquery.ui.droppable
 //= require_tree .
