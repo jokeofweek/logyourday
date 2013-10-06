@@ -31,12 +31,12 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.posts = data;
   });
 
-  $scope.transform = function(str, tagsArray) {
-  	// Convert tags to an object.
+  $scope.transform = function(str, tagsObj) {
+  	// Swap tagsObj to be denormalized => normalized
   	var tags = {};
-  	for (var i = 0, l = tagsArray.length; i < l; i++) {
-  		tags[tagsArray[i]] = true;
-  	}
+    for (var key in tagsObj) {
+      tags[tagsObj[key]] = key;
+    }
 		// Replace all hashtags with links.
 		str = str.replace(/[#]+[A-Za-z0-9-_]+/g, function(hash) {
 			// Only replace the hash if it's in the set of tags.
@@ -88,6 +88,11 @@ module.controller('PostGraphCtrl', ['$scope', '$http', function($scope, $http) {
 
   $scope.yAxis = undefined;
   $scope.xAxis = undefined;
+
+  $scope.updateAxis = function(str) {
+    console.log($scope.yAxis);
+    console.log($scope.xAxis);
+  };
 }]);
 
 /*

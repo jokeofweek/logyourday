@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     tags = getTags(message)
     tags = tags.merge(verb_tag) unless verb_tag.nil?
     if tags.nil?
-      redirect_to posts_url 
+      redirect_to :root 
     else
       post.tags = tags
       post.metrics = getAmount(message)
@@ -31,11 +31,9 @@ class PostsController < ApplicationController
         post.units.push(/[A-Za-z]+/.match(metric)[0])
       end
 
-      if post.save
-        redirect_to posts_url
-      else
-        redirect_to :root
-      end
+      post.save
+      redirect_to :root
+    
     end
   end
 
