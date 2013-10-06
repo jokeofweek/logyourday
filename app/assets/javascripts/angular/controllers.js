@@ -27,24 +27,43 @@ var module = angular.module('lyd');
 
 module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
 
-  $http.get('/users/d9922e8a646863d7c6000000/posts.json').success(function(data) {
-    $scope.posts = data.posts;
+  $http.get('/posts.json').success(function(data) {
+    $scope.posts = data;
   });
 
-//	$scope.posts = [
-//		generatePost(),
-//		generatePost(),
-//		generatePost(),
-//		generatePost()
-//	];
+  $scope.transform = function(str, tagsArray) {
+  	// Convert tags to an object.
+  	var tags = {};
+  	for (var i = 0, l = tagsArray.length; i < l; i++) {
+  		tags[tagsArray[i]] = true;
+  	}
+		// Replace all hashtags with links.
+		str = str.replace(/[#]+[A-Za-z0-9-_]+/g, function(hash) {
+			// Only replace the hash if it's in the set of tags.
+			if (hash && tags[hash]) {
+				return '<a href="#" class="tag_link">' + hash + '</a>';
+			} else {
+				return hash;
+			}
+		});
+		// Replace all words with links.
+		str = str.replace(/(\w+)/g, function(tag) {
+			if (tag && tag.length > 0 && tag.charAt(0) != '#' && tags[tag]) {
+				return '<a href="#" class="tag_link">' + tag + '</a>';
+			} else {
+				return tag;
+			}
+		});
+		return str.trim();
+  };
 
-	$scope.format = function(text, tags) {
-		return '<h2>' + text + '</h2>';
-	};
+  $scope.relativeTime = function(time) {
+  	return moment(time).fromNow();
+  };
 
-	$scope.nextPage = function() {
+  $scope.nextPage = function() {
 		$scope.posts.push(generatePost());
-	};
+  };
 }]);
 
 /*
