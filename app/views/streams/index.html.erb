@@ -7,7 +7,7 @@
   <section>
     <h1>Recent Posts</h1>
     <div class="post" ng-repeat="post in posts">
-      <p class="post-content" ng-bind-html="transform(post.message, post.tags)"></p>
+      <p class="post-content" ng-bind-html-unsafe="transform(post.message, post.tags)"></p>
       <p class="post-time">{{relativeTime(post.created_at)}}</p>
     </div>
     <a href="#" ng-click="nextPage()">More...</a>
