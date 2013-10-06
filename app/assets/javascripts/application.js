@@ -24,4 +24,5 @@
 //= require jquery.ui.position
 //= require jquery.ui.draggable
 //= require jquery.ui.droppable
+//= require d3
 //= require_tree .
