@@ -83,6 +83,6 @@ class PostsController < ApplicationController
       @posts = @posts.with_tag(URI.unescape(tag))
 
     end
-
+  end
 
   end
