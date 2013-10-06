@@ -87,7 +87,7 @@ class PostsController < ApplicationController
     else
       vals1 = (rand()*6).to_i + 2
       vals2 = (rand()*50).to_i
-      string = "bicycled #{vals2} minutes and drank #{vals1} glasses."
+      string = "bicycled #{vals2} minutes with #{vals1} breaks."
     end
     verb_tag = Post.getVerb((string))
     tags = getTags(string)
