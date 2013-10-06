@@ -1,1 +1,1 @@
-attributes :created_at,:message,:tags
+attributes :created_at,:message,:tags,:metrics

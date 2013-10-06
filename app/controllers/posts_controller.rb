@@ -25,10 +25,11 @@ class PostsController < ApplicationController
       redirect_to :root 
     else
       @post.tags = tags
-      @post.metrics = getAmount(message)
+      @post.metrics = getMetrics(message)
       @post.units = []
       @post.metrics.each do |metric|
-        @post.units.push(/[A-Za-z]+/.match(metric)[0])
+        # Add the unit name.
+        @post.units.push(metric[1])
       end
       @post.save
       redirect_to @post
@@ -46,8 +47,8 @@ class PostsController < ApplicationController
     tags
   end
 
-  def getAmount(message)
-    message.scan(/\d+ *\w*/)
+  def getMetrics(message)
+    message.scan(/(\d+)\s*(\w*)/)
   end
 
   def tag
