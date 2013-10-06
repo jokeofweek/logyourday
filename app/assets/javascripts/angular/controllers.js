@@ -31,6 +31,8 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.posts = data;
   });
 
+  $scope.message = '';
+
   $scope.transform = function(str, tagsObj) {
   	// Swap tagsObj to be denormalized => normalized
   	var tags = {};
@@ -59,6 +61,20 @@ module.controller('PostListCtrl', ['$scope', '$http', function($scope, $http) {
 
   $scope.relativeTime = function(time) {
   	return moment(time).fromNow();
+  };
+
+  $scope.onSubmit = function() {
+    if ($scope.message) {
+      $http.post('/posts', {
+        message: $scope.message,
+        utf8: "\u2713",
+        authenticity_token: document.getElementById('authenticity_token').value
+      }).success(function(data) {
+        $scope.message = '';
+        alert(":D");
+      });
+    }
+    return false;
   };
 
   $scope.nextPage = function() {
