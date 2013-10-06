@@ -11,7 +11,7 @@ Logyourday::Application.routes.draw do
   get '/users/units', to: 'users#units'
   resources :posts
   get '/posts/tag/:tag', to: 'posts#tag' 
-  get '/viztest', to: 'viztest#index'
+  get '/graph', to: 'graph#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
