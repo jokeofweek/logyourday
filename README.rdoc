@@ -1,28 +1,8 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+LogYourDay was the HackMIT project of [Dominic Charley-Roy](https://github.com/jokeofweek), [Sam Khan](sammyKhan), and [Xavier Denis](https://github.com/xldenis). It is combines Twitter-style microposts about what a user did with that day and data visualization tools in order to allow users to visualize trends in their daily lives.
 
-Things you may want to cover:
+Here are some screenshots:
+[Login](http://imgur.com/k55RtZ3) - [Stream](http://imgur.com/k55RtZ3) - [Graphing Tool](http://imgur.com/JkQBhXc)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+We made LogYourDay using [Ruby on Rails](http://rubyonrails.org/), [AngularJS](http://angularjs.org/), [MongoDB](http://www.mongodb.org/), [AlchemyAPI](http://www.alchemyapi.com/), and [d3js](http://d3js.org/).
