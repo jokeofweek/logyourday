@@ -1,6 +1,6 @@
 # README
 
-LogYourDay was the HackMIT project of [Dominic Charley-Roy](https://github.com/jokeofweek), [Sam Khan](sammyKhan), and [Xavier Denis](https://github.com/xldenis). It is combines Twitter-style microposts about what a user did with that day and data visualization tools in order to allow users to visualize trends in their daily lives.
+LogYourDay was the HackMIT project of [Dominic Charley-Roy](https://github.com/jokeofweek), [Sam Khan](https://github.com/sammyKhan), and [Xavier Denis](https://github.com/xldenis). It is combines Twitter-style microposts about what a user did with that day and data visualization tools in order to allow users to visualize trends in their daily lives.
 
 Here are some screenshots:
 [Login](http://imgur.com/k55RtZ3) - [Stream](http://imgur.com/cSlOs1m) - [Graphing Tool](http://imgur.com/JkQBhXc)
