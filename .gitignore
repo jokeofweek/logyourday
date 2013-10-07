@@ -18,3 +18,5 @@
 # Ignore sublime files.
 *.sublime-*
 
+# Ignore rbenv ruby version
+.ruby-version
